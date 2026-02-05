@@ -1,18 +1,23 @@
-import tkinter as tk
-from time import strftime
+import ipywidgets as widgets
+from IPython.display import display
 
-def update_time():
-    time_string = strftime('%H:%M:%S')
-    clock_label.config(text=time_string)
-    clock_label.after(1000, update_time)
+# Example 1: An interactive slider
+def f(x):
+    print(x)
 
-root = tk.Tk()
-root.title("Digital Clock")
-root.geometry("400x150")
-root.configure(bg='black')
+slider = widgets.IntSlider(min=0, max=10, step=1, description='Value:')
+display(slider)
 
-clock_label = tk.Label(root, font=('Arial', 80, 'bold'), background='black', foreground='cyan')
-clock_label.pack(expand=True)
+# To link the slider to a function
+widgets.interactive(f, x=slider);
 
-update_time()
-root.mainloop()
+# Example 2: A simple button and output
+button = widgets.Button(description='Click Me!')
+output = widgets.Output()
+
+def on_button_clicked(b):
+    with output:
+        print('Button clicked!')
+
+button.on_click(on_button_clicked)
+display(button, output)
