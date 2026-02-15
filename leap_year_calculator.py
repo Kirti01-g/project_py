@@ -1,4 +1,4 @@
-# this is leap calculater
+# this is leap calculator
 
 year = int(input("Enter a year: "))
 
